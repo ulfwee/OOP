@@ -1,0 +1,52 @@
+# --- Build folders ---
+/build/
+/bin/
+/obj/
+/out/
+/dist/
+/Debug/
+/Release/
+
+# --- Compiled object files ---
+*.o
+*.obj
+*.lo
+*.la
+*.ilk
+
+# --- Compiled binaries ---
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# --- Compiler generated files ---
+*.pdb
+*.idb
+*.mod
+*.exp
+*.lib
+
+# --- IDE/project-specific ---
+# Visual Studio
+.vs/
+*.vcxproj.user
+
+# CLion / JetBrains
+.idea/
+
+# Code::Blocks
+*.depend
+*.layout
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# --- OS / Misc ---
+.DS_Store
+Thumbs.db
