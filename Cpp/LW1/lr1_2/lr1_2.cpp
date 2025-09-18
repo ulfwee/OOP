@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
 	setlocale(0, "ukr");
-	Money money(100, 15);
+	Money money(7, 15);
 	money.printMoney();
 
 	int cost, price;

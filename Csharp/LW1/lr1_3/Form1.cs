@@ -1,6 +1,7 @@
 using System.Data;
 using System.Text.Json;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace lr1_3
 {
@@ -37,10 +38,10 @@ namespace lr1_3
 
         private void label3_Click(object sender, EventArgs e)
         {
-            panel2.Hide();
-            panel1.Show();
-            label3.Visible = false;
-            label5.Visible = true;
+            this.Hide();
+            Addnew addnew = new Addnew();
+
+            var r = addnew.ShowDialog();
         }
 
 
@@ -88,14 +89,7 @@ namespace lr1_3
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = shows;
         }
-        public class Theater
-        {
-            public string Name { get; set; }
-            public string Genre { get; set; }
-            public string Description { get; set; }
-            public DateTime Date { get; set; }
-
-        }
+        
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -115,4 +109,12 @@ namespace lr1_3
             }
         }
     }
+    public class Theater
+        {
+            public string Name { get; set; }
+            public string Genre { get; set; }
+            public string Description { get; set; }
+            public DateTime Date { get; set; }
+
+        }
 }
