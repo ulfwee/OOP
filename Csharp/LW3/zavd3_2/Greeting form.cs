@@ -52,12 +52,12 @@ namespace lr1_3
         {
             if (radioButton1.Checked)
             {
-                Form1 form = new Form1("Оперний");
+                Form1 form = new Form1();
                 form.Show();
             }
             else if (radioButton2.Checked)
             {
-                Form1 form = new Form1("Ляльковий");
+                Form1 form = new Form1();
                 form.Show();
             }
             else

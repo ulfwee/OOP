@@ -12,25 +12,26 @@ namespace lr1_3
     {
         BindingList<OperaTheater> operaShows = new BindingList<OperaTheater>();
         BindingList<PuppetTheater> puppetShows = new BindingList<PuppetTheater>();
+        BindingList<Theater> allShows = new BindingList<Theater>();
 
-
-        public string n;
-
-        public Form1(string n)
+        
+        public Form1()
         {
-            this.n = n;
             InitializeComponent();
+            
+            
             comboBoxGenre.SelectedIndex = 0;
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
+            comboBox4.SelectedIndex = 0;
+            string n = comboBox4.SelectedItem?.ToString();
             if (n == "Ляльковий")
             {
                 label17.Text = "Тип ляльок";
                 label18.Text = "Вік. обмеження";
                 comboBox3.Items.Clear();
-                comboBox3.Items.AddRange("0+", "3+", "6+", "12+", "16+", "18+"); 
+                comboBox3.Items.AddRange("0+", "3+", "6+", "12+", "16+", "18+");
                 radioButton2.Visible = false;
-                dataGridView1.DataSource = puppetShows;
 
             }
             else if (n == "Оперний")
@@ -40,9 +41,10 @@ namespace lr1_3
                 comboBox3.Items.Clear();
                 comboBox3.Items.AddRange("Англійська", "Українська", "Італійська", "Французька");
                 radioButton2.Visible = true;
-                dataGridView1.DataSource = operaShows;
 
             }
+            dataGridView1.DataSource = allShows;
+            SetupDataGridViewColumns();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -69,6 +71,7 @@ namespace lr1_3
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string n = comboBox4.SelectedItem?.ToString();
             if (n == "Ляльковий")
             {
                 if (!string.IsNullOrWhiteSpace(txtName.Text) && !string.IsNullOrWhiteSpace(txtAbout.Text) && !string.IsNullOrWhiteSpace(composertxt.Text) && pickdate1.Value.Date >= DateTime.Now)
@@ -84,6 +87,7 @@ namespace lr1_3
                     };
 
                     puppetShows.Add(puppetth);
+                    allShows.Add(puppetth);
                     txtName.Clear();
                     txtAbout.Clear();
                     comboBoxGenre.SelectedIndex = 0;
@@ -112,6 +116,7 @@ namespace lr1_3
                     };
 
                     operaShows.Add(operath);
+                    allShows.Add(operath);
                     txtName.Clear();
                     txtAbout.Clear();
                     comboBoxGenre.SelectedIndex = 0;
@@ -125,48 +130,31 @@ namespace lr1_3
                     MessageBox.Show("Введіть дані");
                 }
             }
-            
+
 
         }
 
 
         private void label4_Click(object sender, EventArgs e)
         {
-            if (n == "Ляльковий")
+            string n = comboBox4.SelectedItem?.ToString();
+            SaveFileDialog dialog = new SaveFileDialog
             {
-                SaveFileDialog dialog = new SaveFileDialog
-                {
                 Filter = "JSON Files (*.json)|*.json"
-                };
+            };
 
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                var showslist = puppetShows;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string json;
 
+                if (n == "Ляльковий")
+                    json = JsonSerializer.Serialize(puppetShows, new JsonSerializerOptions { WriteIndented = true });
+                else
+                    json = JsonSerializer.Serialize(operaShows, new JsonSerializerOptions { WriteIndented = true });
 
-                string json = JsonSerializer.Serialize(showslist, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(dialog.FileName, json);
                 MessageBox.Show("Збережено");
-                }
             }
-            else if (n == "Оперний")
-            {
-                SaveFileDialog dialog = new SaveFileDialog
-                {
-                    Filter = "JSON Files (*.json)|*.json"
-                };
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var showslist = operaShows;
-
-
-                    string json = JsonSerializer.Serialize(showslist, new JsonSerializerOptions { WriteIndented = true });
-                    File.WriteAllText(dialog.FileName, json);
-                    MessageBox.Show("Збережено");
-                }
-            }
-            
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -184,6 +172,8 @@ namespace lr1_3
             if (comboBox1.SelectedIndex == 0)
             {
                 comboBox2.Enabled = false;
+                dateTimePicker1.Enabled = true;
+                dateTimePicker2.Enabled = true;
             }
             else if (comboBox1.SelectedIndex == 1)
             {
@@ -202,159 +192,97 @@ namespace lr1_3
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            if (n == "Ляльковий")
-            { 
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = puppetShows;
-            }
-            else if (n == "Оперний")
-            {
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = operaShows;
-            }
-                
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = allShows;
+            SetupDataGridViewColumns();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if (n == "Ляльковий")
+
+            IEnumerable<Theater> filtered = allShows;
+
+            if (comboBox1.SelectedIndex == 1) // Фільтр за жанром
             {
-                if (dateTimePicker1.Enabled == false)
-                {
-                    string chosengenre = comboBox2.SelectedItem.ToString();
-                    var filtered = puppetShows.Where(s => s.Genre == chosengenre).ToList();
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = filtered;
-                }
-                else if (comboBox2.Enabled == false)
-                {
-                    DateTime datefrom = dateTimePicker1.Value.Date;
-                    DateTime dateto = dateTimePicker2.Value.Date;
-                    var filtered = puppetShows.Where(s => (s.Date >= datefrom) && (s.Date <= dateto)).ToList();
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = filtered;
-                }
-                else
-                {
-                    string chosengenre = comboBox2.SelectedItem.ToString();
-                    DateTime datefrom = dateTimePicker1.Value.Date;
-                    DateTime dateto = dateTimePicker2.Value.Date;
-                    var filtered = puppetShows.Where(s => (s.Date >= datefrom) && (s.Date <= dateto) && (s.Genre == chosengenre)).ToList();
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = filtered;
-                }
+                string chosenGenre = comboBox2.SelectedItem?.ToString();
+                filtered = filtered.Where(s => s.Genre == chosenGenre);
             }
-            else if (n == "Оперний")
+            else if (comboBox1.SelectedIndex == 2) // Фільтр за жанром і датою
             {
-                if (dateTimePicker1.Enabled == false)
-                {
-                    string chosengenre = comboBox2.SelectedItem.ToString();
-                    var filtered = operaShows.Where(s => s.Genre == chosengenre).ToList();
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = filtered;
-                }
-                else if (comboBox2.Enabled == false)
-                {
-                    DateTime datefrom = dateTimePicker1.Value.Date;
-                    DateTime dateto = dateTimePicker2.Value.Date;
-                    var filtered = operaShows.Where(s => (s.Date >= datefrom) && (s.Date <= dateto)).ToList();
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = filtered;
-                }
-                else
-                {
-                    string chosengenre = comboBox2.SelectedItem.ToString();
-                    DateTime datefrom = dateTimePicker1.Value.Date;
-                    DateTime dateto = dateTimePicker2.Value.Date;
-                    var filtered = operaShows.Where(s => (s.Date >= datefrom) && (s.Date <= dateto) && (s.Genre == chosengenre)).ToList();
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = filtered;
-                }
+                string chosenGenre = comboBox2.SelectedItem?.ToString();
+                DateTime dateFrom = dateTimePicker1.Value.Date;
+                DateTime dateTo = dateTimePicker2.Value.Date;
+                filtered = filtered.Where(s => s.Genre == chosenGenre && s.Date >= dateFrom && s.Date <= dateTo);
             }
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = filtered.ToList();
+            SetupDataGridViewColumns();
         }
 
         private void label15_Click(object sender, EventArgs e)
         {
-            if (n == "Ляльковий")
+            string n = comboBox4.SelectedItem?.ToString();
+            OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
-                };
+                Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
+            };
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
                 {
-                    try
+                    string vmist = File.ReadAllText(openFileDialog.FileName);
+
+                    if (n == "Ляльковий")
                     {
-                        string vmist = File.ReadAllText(openFileDialog.FileName);
                         var showlist = JsonSerializer.Deserialize<List<PuppetTheater>>(vmist);
-
                         if (showlist != null)
                         {
-                            dataGridView1.DataSource = null;
-
-
                             foreach (var ps in showlist)
                             {
                                 if (!puppetShows.Any(x => x == ps))
+                                {
                                     puppetShows.Add(ps);
+                                    allShows.Add(ps);
+                                }
                             }
-                            dataGridView1.DataSource = puppetShows;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Файл пустий");
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("Помилка при читанні файлу: " + ex.Message);
-                    }
-                }
-            }
-            else if (n == "Оперний")
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
-                };
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        string vmist = File.ReadAllText(openFileDialog.FileName);
                         var showlist = JsonSerializer.Deserialize<List<OperaTheater>>(vmist);
-
                         if (showlist != null)
                         {
-                            dataGridView1.DataSource = null;
-
-
                             foreach (var os in showlist)
                             {
                                 if (!operaShows.Any(x => x == os))
+                                {
                                     operaShows.Add(os);
+                                    allShows.Add(os);
+                                }
                             }
-                            dataGridView1.DataSource = operaShows;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Файл пустий");
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Помилка при читанні файлу: " + ex.Message);
-                    }
+
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = allShows;
+                    SetupDataGridViewColumns();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при читанні файлу: " + ex.Message);
                 }
             }
         }
-    
+
 
         private void label16_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
+            allShows.Clear();
+            SetupDataGridViewColumns();
             dataGridView1.Refresh();
         }
 
@@ -366,11 +294,68 @@ namespace lr1_3
             }
         }
 
-        private void langtxt_KeyPress(object sender, KeyPressEventArgs e)
+        private void SetupDataGridViewColumns()
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.Columns.Clear();
+
+            dataGridView1.Columns.Add("Category", "Тип театру");
+            dataGridView1.Columns["Category"].DataPropertyName = "Category";
+
+
+            dataGridView1.Columns.Add("Name", "Назва");
+            dataGridView1.Columns["Name"].DataPropertyName = "Name";
+
+            dataGridView1.Columns.Add("Genre", "Жанр");
+            dataGridView1.Columns["Genre"].DataPropertyName = "Genre";
+
+            dataGridView1.Columns.Add("Description", "Опис");
+            dataGridView1.Columns["Description"].DataPropertyName = "Description";
+
+            dataGridView1.Columns.Add("Date", "Дата");
+            dataGridView1.Columns["Date"].DataPropertyName = "Date";
+
+            dataGridView1.Columns.Add("PuppetType", "Тип ляльок");
+            dataGridView1.Columns["PuppetType"].DataPropertyName = "PuppetType";
+
+            dataGridView1.Columns.Add("AgeCategory", "Вік. обмеження");
+            dataGridView1.Columns["AgeCategory"].DataPropertyName = "AgeCategory";
+
+            dataGridView1.Columns.Add("Composer", "Композитор");
+            dataGridView1.Columns["Composer"].DataPropertyName = "Composer";
+
+            dataGridView1.Columns.Add("Language", "Мова");
+            dataGridView1.Columns["Language"].DataPropertyName = "Language";
+
+            dataGridView1.Columns.Add("Subtitles", "Субтитри");
+            dataGridView1.Columns["Subtitles"].DataPropertyName = "Subtitles";
+
+            dataGridView1.Columns["Date"].DefaultCellStyle.Format = "dd.MM.yyyy";
+            dataGridView1.Columns["Subtitles"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string n = comboBox4.SelectedItem?.ToString();
+
+            if (n == "Ляльковий")
             {
-                e.Handled = true;
+                label17.Text = "Тип ляльок";
+                label18.Text = "Вік. обмеження";
+                comboBox3.Items.Clear();
+                comboBox3.Items.AddRange("0+", "3+", "6+", "12+", "16+", "18+");
+                radioButton2.Visible = false;
+
+            }
+            else if (n == "Оперний")
+            {
+                label17.Text = "Композиор";
+                label18.Text = "Мова викон.";
+                comboBox3.Items.Clear();
+                comboBox3.Items.AddRange("Англійська", "Українська", "Італійська", "Французька");
+                radioButton2.Visible = true;
+
             }
         }
     }

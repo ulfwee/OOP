@@ -12,6 +12,7 @@ namespace lr1_3
         public string Genre { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public string Category { get; set; }
 
         public static bool operator ==(Theater t1, Theater t2)
         {
@@ -53,7 +54,15 @@ namespace lr1_3
         public string Composer { get; set; }
         public string Language { get; set; }
         public bool Subtitles { get; set; }
+        public string PuppetType { get; set; }
+        public string AgeCategory { get; set; }
 
+        public OperaTheater()
+        {
+            Category = "Оперний";
+            PuppetType = null;
+            AgeCategory = null;
+        }
         public override string ToString()
         {
             string subs = Subtitles ? "з субтитрами" : "без субтитрів";
@@ -99,6 +108,17 @@ namespace lr1_3
         public string PuppetType { get; set; }
         public string AgeCategory { get; set; }
 
+        public string Composer { get; set; }
+        public string Language { get; set; }
+        public bool Subtitles { get; set; }
+
+        public PuppetTheater()
+        {
+            Category = "Ляльковий";
+            Composer = null;
+            Language = null;
+            Subtitles = false;
+        }
         public override string ToString()
         {
             return $"{Name} (Ляльковий театр) — Тип: {PuppetType}, Вікове обмеження: {AgeCategory}, {Date:dd.MM.yyyy}";

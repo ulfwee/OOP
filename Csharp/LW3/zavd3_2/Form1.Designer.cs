@@ -33,6 +33,7 @@
             label4 = new Label();
             label5 = new Label();
             panel1 = new Panel();
+            comboBox4 = new ComboBox();
             comboBox3 = new ComboBox();
             radioButton2 = new RadioButton();
             composertxt = new TextBox();
@@ -121,6 +122,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBox4);
             panel1.Controls.Add(comboBox3);
             panel1.Controls.Add(radioButton2);
             panel1.Controls.Add(composertxt);
@@ -140,10 +142,20 @@
             panel1.Size = new Size(457, 536);
             panel1.TabIndex = 5;
             // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Items.AddRange(new object[] { "Ляльковий", "Оперний" });
+            comboBox4.Location = new Point(45, 35);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(371, 28);
+            comboBox4.TabIndex = 24;
+            comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
+            // 
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(115, 386);
+            comboBox3.Location = new Point(115, 428);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(301, 28);
             comboBox3.TabIndex = 23;
@@ -152,7 +164,7 @@
             // 
             radioButton2.AutoSize = true;
             radioButton2.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            radioButton2.Location = new Point(115, 445);
+            radioButton2.Location = new Point(115, 471);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(101, 21);
             radioButton2.TabIndex = 22;
@@ -162,7 +174,7 @@
             // 
             // composertxt
             // 
-            composertxt.Location = new Point(115, 343);
+            composertxt.Location = new Point(115, 386);
             composertxt.Name = "composertxt";
             composertxt.Size = new Size(301, 27);
             composertxt.TabIndex = 19;
@@ -173,7 +185,7 @@
             label18.Anchor = AnchorStyles.Left;
             label18.AutoSize = true;
             label18.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label18.Location = new Point(1, 392);
+            label18.Location = new Point(1, 439);
             label18.Name = "label18";
             label18.Size = new Size(107, 17);
             label18.TabIndex = 17;
@@ -184,7 +196,7 @@
             label17.Anchor = AnchorStyles.Left;
             label17.AutoSize = true;
             label17.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label17.Location = new Point(1, 349);
+            label17.Location = new Point(10, 392);
             label17.Name = "label17";
             label17.Size = new Size(98, 17);
             label17.TabIndex = 16;
@@ -211,7 +223,7 @@
             label9.Anchor = AnchorStyles.Left;
             label9.AutoSize = true;
             label9.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label9.Location = new Point(46, 299);
+            label9.Location = new Point(55, 353);
             label9.Name = "label9";
             label9.Size = new Size(53, 17);
             label9.TabIndex = 12;
@@ -222,7 +234,7 @@
             label8.Anchor = AnchorStyles.Left;
             label8.AutoSize = true;
             label8.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label8.Location = new Point(1, 125);
+            label8.Location = new Point(10, 179);
             label8.Name = "label8";
             label8.Size = new Size(98, 17);
             label8.TabIndex = 11;
@@ -233,7 +245,7 @@
             label7.Anchor = AnchorStyles.Left;
             label7.AutoSize = true;
             label7.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label7.Location = new Point(55, 72);
+            label7.Location = new Point(64, 140);
             label7.Name = "label7";
             label7.Size = new Size(44, 17);
             label7.TabIndex = 10;
@@ -244,7 +256,7 @@
             label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
             label6.Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label6.Location = new Point(46, 30);
+            label6.Location = new Point(55, 92);
             label6.Name = "label6";
             label6.Size = new Size(53, 17);
             label6.TabIndex = 9;
@@ -255,7 +267,7 @@
             comboBoxGenre.Anchor = AnchorStyles.Left;
             comboBoxGenre.FormattingEnabled = true;
             comboBoxGenre.Items.AddRange(new object[] { "Трагікомедія", "Комедія", "Казка", "Хоррор", "Арттерапевтична", "Драма" });
-            comboBoxGenre.Location = new Point(115, 65);
+            comboBoxGenre.Location = new Point(115, 129);
             comboBoxGenre.Name = "comboBoxGenre";
             comboBoxGenre.Size = new Size(301, 28);
             comboBoxGenre.TabIndex = 6;
@@ -263,7 +275,7 @@
             // pickdate1
             // 
             pickdate1.Anchor = AnchorStyles.Left;
-            pickdate1.Location = new Point(115, 292);
+            pickdate1.Location = new Point(115, 343);
             pickdate1.Name = "pickdate1";
             pickdate1.Size = new Size(301, 27);
             pickdate1.TabIndex = 8;
@@ -271,7 +283,7 @@
             // txtAbout
             // 
             txtAbout.Anchor = AnchorStyles.Left;
-            txtAbout.Location = new Point(115, 119);
+            txtAbout.Location = new Point(115, 173);
             txtAbout.Multiline = true;
             txtAbout.Name = "txtAbout";
             txtAbout.Size = new Size(301, 154);
@@ -280,7 +292,7 @@
             // txtName
             // 
             txtName.Anchor = AnchorStyles.Left;
-            txtName.Location = new Point(115, 24);
+            txtName.Location = new Point(115, 82);
             txtName.Name = "txtName";
             txtName.Size = new Size(301, 27);
             txtName.TabIndex = 6;
@@ -298,7 +310,7 @@
             panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(8, 110);
+            panel2.Location = new Point(13, 110);
             panel2.Name = "panel2";
             panel2.Size = new Size(453, 549);
             panel2.TabIndex = 8;
@@ -537,5 +549,6 @@
         private TextBox composertxt;
         private RadioButton radioButton2;
         private ComboBox comboBox3;
+        private ComboBox comboBox4;
     }
 }
