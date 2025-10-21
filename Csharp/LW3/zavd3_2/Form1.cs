@@ -74,7 +74,8 @@ namespace lr1_3
             string n = comboBox4.SelectedItem?.ToString();
             if (n == "Ляльковий")
             {
-                if (!string.IsNullOrWhiteSpace(txtName.Text) && !string.IsNullOrWhiteSpace(txtAbout.Text) && !string.IsNullOrWhiteSpace(composertxt.Text) && pickdate1.Value.Date >= DateTime.Now)
+                if (!string.IsNullOrWhiteSpace(txtName.Text) && !string.IsNullOrWhiteSpace(txtAbout.Text) &&
+                    !string.IsNullOrWhiteSpace(composertxt.Text) && pickdate1.Value.Date >= DateTime.Now)
                 {
                     PuppetTheater puppetth = new PuppetTheater()
                     {
@@ -83,7 +84,7 @@ namespace lr1_3
                         Description = txtAbout.Text,
                         Date = pickdate1.Value.Date,
                         PuppetType = composertxt.Text,
-                        AgeCategory = comboBox3.Text
+                        AgeCategory = comboBox3.Text,
                     };
 
                     puppetShows.Add(puppetth);
@@ -94,6 +95,8 @@ namespace lr1_3
                     pickdate1.Value = DateTime.Now;
                     comboBox3.SelectedIndex = 0;
                     composertxt.Clear();
+
+                    UpdateDataGridView(); 
                 }
                 else
                 {
@@ -102,7 +105,8 @@ namespace lr1_3
             }
             else if (n == "Оперний")
             {
-                if (!string.IsNullOrWhiteSpace(txtName.Text) && !string.IsNullOrWhiteSpace(txtAbout.Text) && !string.IsNullOrWhiteSpace(composertxt.Text) && pickdate1.Value.Date >= DateTime.Now)
+                if (!string.IsNullOrWhiteSpace(txtName.Text) && !string.IsNullOrWhiteSpace(txtAbout.Text) &&
+                    !string.IsNullOrWhiteSpace(composertxt.Text) && pickdate1.Value.Date >= DateTime.Now)
                 {
                     OperaTheater operath = new OperaTheater()
                     {
@@ -124,14 +128,14 @@ namespace lr1_3
                     comboBox3.SelectedIndex = 0;
                     composertxt.Clear();
                     radioButton2.Checked = false;
+
+                    UpdateDataGridView(); 
                 }
                 else
                 {
                     MessageBox.Show("Введіть дані");
                 }
             }
-
-
         }
 
 
@@ -192,23 +196,24 @@ namespace lr1_3
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = allShows;
-            SetupDataGridViewColumns();
+            UpdateDataGridView();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-
             IEnumerable<Theater> filtered = allShows;
-
-            if (comboBox1.SelectedIndex == 1) // Фільтр за жанром
+            if(comboBox1.SelectedIndex == 0)
+            {
+                DateTime dateFrom = dateTimePicker1.Value.Date;
+                DateTime dateTo = dateTimePicker2.Value.Date;
+                filtered = filtered.Where(s => s.Date >= dateFrom && s.Date <= dateTo);
+            }
+            else if (comboBox1.SelectedIndex == 1) 
             {
                 string chosenGenre = comboBox2.SelectedItem?.ToString();
                 filtered = filtered.Where(s => s.Genre == chosenGenre);
             }
-            else if (comboBox1.SelectedIndex == 2) // Фільтр за жанром і датою
+            else if (comboBox1.SelectedIndex == 2)
             {
                 string chosenGenre = comboBox2.SelectedItem?.ToString();
                 DateTime dateFrom = dateTimePicker1.Value.Date;
@@ -216,9 +221,23 @@ namespace lr1_3
                 filtered = filtered.Where(s => s.Genre == chosenGenre && s.Date >= dateFrom && s.Date <= dateTo);
             }
 
+            var displayList = filtered.Select(show => new
+            {
+                Category = show.Category,
+                Name = show.Name,
+                Genre = show.Genre,
+                Description = show.Description,
+                Date = show.Date,
+                PuppetType = show is PuppetTheater puppet ? puppet.PuppetType : null,
+                AgeCategory = show is PuppetTheater puppet2 ? puppet2.AgeCategory : null,
+                Composer = show is OperaTheater opera ? opera.Composer : null,
+                Language = show is OperaTheater opera2 ? opera2.Language : null,
+                Subtitles = show is OperaTheater opera3 ? (opera3.Subtitles ? "Так" : "Ні") : null
+            }).ToList();
+
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = filtered.ToList();
-            SetupDataGridViewColumns();
+            dataGridView1.DataSource = displayList;
+            dataGridView1.Refresh();
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -266,9 +285,7 @@ namespace lr1_3
                         }
                     }
 
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = allShows;
-                    SetupDataGridViewColumns();
+                    UpdateDataGridView(); 
                 }
                 catch (Exception ex)
                 {
@@ -280,10 +297,10 @@ namespace lr1_3
 
         private void label16_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
             allShows.Clear();
-            SetupDataGridViewColumns();
-            dataGridView1.Refresh();
+            puppetShows.Clear();
+            operaShows.Clear();
+            UpdateDataGridView();
         }
 
         private void composertxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -301,40 +318,51 @@ namespace lr1_3
 
             dataGridView1.Columns.Add("Category", "Тип театру");
             dataGridView1.Columns["Category"].DataPropertyName = "Category";
-
-
             dataGridView1.Columns.Add("Name", "Назва");
             dataGridView1.Columns["Name"].DataPropertyName = "Name";
-
             dataGridView1.Columns.Add("Genre", "Жанр");
             dataGridView1.Columns["Genre"].DataPropertyName = "Genre";
-
             dataGridView1.Columns.Add("Description", "Опис");
             dataGridView1.Columns["Description"].DataPropertyName = "Description";
-
             dataGridView1.Columns.Add("Date", "Дата");
             dataGridView1.Columns["Date"].DataPropertyName = "Date";
-
             dataGridView1.Columns.Add("PuppetType", "Тип ляльок");
             dataGridView1.Columns["PuppetType"].DataPropertyName = "PuppetType";
-
             dataGridView1.Columns.Add("AgeCategory", "Вік. обмеження");
             dataGridView1.Columns["AgeCategory"].DataPropertyName = "AgeCategory";
-
             dataGridView1.Columns.Add("Composer", "Композитор");
             dataGridView1.Columns["Composer"].DataPropertyName = "Composer";
-
             dataGridView1.Columns.Add("Language", "Мова");
             dataGridView1.Columns["Language"].DataPropertyName = "Language";
-
             dataGridView1.Columns.Add("Subtitles", "Субтитри");
             dataGridView1.Columns["Subtitles"].DataPropertyName = "Subtitles";
 
             dataGridView1.Columns["Date"].DefaultCellStyle.Format = "dd.MM.yyyy";
             dataGridView1.Columns["Subtitles"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            UpdateDataGridView();
         }
 
+        private void UpdateDataGridView()
+        {
+            var displayList = allShows.Select(show => new
+            {
+                Category = show.Category,
+                Name = show.Name,
+                Genre = show.Genre,
+                Description = show.Description,
+                Date = show.Date,
+                PuppetType = show is PuppetTheater puppet ? puppet.PuppetType : null,
+                AgeCategory = show is PuppetTheater puppet2 ? puppet2.AgeCategory : null,
+                Composer = show is OperaTheater opera ? opera.Composer : null,
+                Language = show is OperaTheater opera2 ? opera2.Language : null,
+                Subtitles = show is OperaTheater opera3 ? (opera3.Subtitles ? "Так" : "Ні") : null
+            }).ToList();
 
+            dataGridView1.DataSource = null; 
+            dataGridView1.DataSource = displayList;
+            dataGridView1.Refresh(); 
+        }
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             string n = comboBox4.SelectedItem?.ToString();
