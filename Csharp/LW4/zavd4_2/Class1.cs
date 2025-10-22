@@ -22,7 +22,6 @@ namespace lr1_3
         string Genre { get; set; }
         string Description { get; set; }
         DateTime Date { get; set; }
-
         public string Category { get; set; }
         string GetInfo();
     }
