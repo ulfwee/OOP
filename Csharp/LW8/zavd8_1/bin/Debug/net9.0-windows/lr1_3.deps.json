@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "lr1_3/1.0.0": {
+        "dependencies": {
+          "TheaterLibrary.Reference": "1.0.0.0"
+        },
+        "runtime": {
+          "lr1_3.dll": {}
+        }
+      },
+      "TheaterLibrary.Reference/1.0.0.0": {
+        "runtime": {
+          "TheaterLibrary.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "lr1_3/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TheaterLibrary.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

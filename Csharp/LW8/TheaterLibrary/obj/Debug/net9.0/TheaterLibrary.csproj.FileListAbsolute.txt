@@ -1,0 +1,11 @@
+D:\коледж\ООП\лр8\TheaterLibrary\bin\Debug\net9.0\TheaterLibrary.deps.json
+D:\коледж\ООП\лр8\TheaterLibrary\bin\Debug\net9.0\TheaterLibrary.dll
+D:\коледж\ООП\лр8\TheaterLibrary\bin\Debug\net9.0\TheaterLibrary.pdb
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\TheaterLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\TheaterLibrary.AssemblyInfoInputs.cache
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\TheaterLibrary.AssemblyInfo.cs
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\TheaterLibrary.csproj.CoreCompileInputs.cache
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\TheaterLibrary.dll
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\refint\TheaterLibrary.dll
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\TheaterLibrary.pdb
+D:\коледж\ООП\лр8\TheaterLibrary\obj\Debug\net9.0\ref\TheaterLibrary.dll
