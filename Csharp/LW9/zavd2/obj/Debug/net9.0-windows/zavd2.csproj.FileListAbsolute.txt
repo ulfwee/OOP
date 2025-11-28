@@ -1,0 +1,17 @@
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\Stitch.MainForm.resources
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.csproj.GenerateResource.cache
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.GeneratedMSBuildEditorConfig.editorconfig
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.AssemblyInfoInputs.cache
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.AssemblyInfo.cs
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.csproj.CoreCompileInputs.cache
+D:\коледж\ООП\лр9\zavd2\bin\Debug\net9.0-windows\zavd2.exe
+D:\коледж\ООП\лр9\zavd2\bin\Debug\net9.0-windows\zavd2.deps.json
+D:\коледж\ООП\лр9\zavd2\bin\Debug\net9.0-windows\zavd2.runtimeconfig.json
+D:\коледж\ООП\лр9\zavd2\bin\Debug\net9.0-windows\zavd2.dll
+D:\коледж\ООП\лр9\zavd2\bin\Debug\net9.0-windows\zavd2.pdb
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.dll
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\refint\zavd2.dll
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.pdb
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\zavd2.genruntimeconfig.cache
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\ref\zavd2.dll
+D:\коледж\ООП\лр9\zavd2\obj\Debug\net9.0-windows\Stitch.Polotno.resources

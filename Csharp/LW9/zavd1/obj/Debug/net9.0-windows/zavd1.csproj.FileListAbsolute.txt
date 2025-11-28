@@ -1,0 +1,17 @@
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\Katok.MainForm.resources
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\Katok.Katok.resources
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.csproj.GenerateResource.cache
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.GeneratedMSBuildEditorConfig.editorconfig
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.AssemblyInfoInputs.cache
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.AssemblyInfo.cs
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.csproj.CoreCompileInputs.cache
+D:\коледж\ООП\лр9\zavd1\bin\Debug\net9.0-windows\zavd1.exe
+D:\коледж\ООП\лр9\zavd1\bin\Debug\net9.0-windows\zavd1.deps.json
+D:\коледж\ООП\лр9\zavd1\bin\Debug\net9.0-windows\zavd1.runtimeconfig.json
+D:\коледж\ООП\лр9\zavd1\bin\Debug\net9.0-windows\zavd1.dll
+D:\коледж\ООП\лр9\zavd1\bin\Debug\net9.0-windows\zavd1.pdb
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.dll
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\refint\zavd1.dll
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.pdb
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\zavd1.genruntimeconfig.cache
+D:\коледж\ООП\лр9\zavd1\obj\Debug\net9.0-windows\ref\zavd1.dll

@@ -1,0 +1,17 @@
+D:\коледж\ООП\лр9\zavd3\bin\Debug\net9.0-windows\zavd3.exe
+D:\коледж\ООП\лр9\zavd3\bin\Debug\net9.0-windows\zavd3.deps.json
+D:\коледж\ООП\лр9\zavd3\bin\Debug\net9.0-windows\zavd3.runtimeconfig.json
+D:\коледж\ООП\лр9\zavd3\bin\Debug\net9.0-windows\zavd3.dll
+D:\коледж\ООП\лр9\zavd3\bin\Debug\net9.0-windows\zavd3.pdb
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\Form1.resources
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\Pole.resources
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.csproj.GenerateResource.cache
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.GeneratedMSBuildEditorConfig.editorconfig
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.AssemblyInfoInputs.cache
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.AssemblyInfo.cs
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.csproj.CoreCompileInputs.cache
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.dll
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\refint\zavd3.dll
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.pdb
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\zavd3.genruntimeconfig.cache
+D:\коледж\ООП\лр9\zavd3\obj\Debug\net9.0-windows\ref\zavd3.dll
